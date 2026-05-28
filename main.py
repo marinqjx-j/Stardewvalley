@@ -1,26 +1,32 @@
-import pygame, sys
+import pygame
+import sys
+import os
 from settings import *
 from level import Level
 
-class Game:
-	def __init__(self):
-		pygame.init()
-		self.screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-		pygame.display.set_caption('Sprout land')
-		self.clock = pygame.time.Clock()
-		self.level = Level()
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-	def run(self):
-		while True:
-			for event in pygame.event.get():
-				if event.type == pygame.QUIT:
-					pygame.quit()
-					sys.exit()
-  
-			dt = self.clock.tick() / 1000
-			self.level.run(dt)
-			pygame.display.update()
+
+class Game:
+    def __init__(self):
+        pygame.init()
+        self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        pygame.display.set_caption('Sprout land')
+        self.clock = pygame.time.Clock()
+        self.level = Level()
+
+    def run(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+
+            dt = self.clock.tick() / 1000
+            self.level.run(dt)
+            pygame.display.update()
+
 
 if __name__ == '__main__':
-	game = Game()
-	game.run()
+    game = Game()
+    game.run()
