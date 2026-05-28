@@ -72,9 +72,9 @@ class Player(pygame.sprite.Sprite):
 			self.soil_layer.get_hit(self.target_pos)
 		
 		if self.selected_tool == 'axe':
-			for tree in self.tree_sprites.sprites():
-				if tree.rect.collidepoint(self.target_pos):
-					tree.damage()
+            for tree in self.tree_sprites.sprites():
+                if hasattr(tree, 'damage') and tree.rect.collidepoint(self.target_pos):
+                    tree.damage()
 		
 		if self.selected_tool == 'water':
 			self.soil_layer.water(self.target_pos)
